@@ -14,284 +14,188 @@ A fully autonomous AI assistant running locally on your laptop with voice contro
 
 ---
 
+## 🎯 **QUICK START (One Click!)**
+
+### **Windows Users:**
+
+1. **Double-click:** `start_jarvis.bat`
+2. **Wait** for installation (first time only)
+3. **Say:** "Hey Jarvis" + your command
+
+### **Linux/macOS Users:**
+
+```bash
+chmod +x start_jarvis.sh
+./start_jarvis.sh
+```
+
+That's it! ✅
+
+---
+
+## 📝 **Setup (If you want to configure first)**
+
+### **Windows:**
+Double-click `setup_windows.bat` to configure API keys before running
+
+### **Linux/macOS:**
+```bash
+chmod +x setup_linux.sh
+./setup_linux.sh
+```
+
+---
+
+## 🔑 **Get API Keys (5 minutes)**
+
+1. **OpenAI**: https://platform.openai.com/api-keys
+   - Click "Create new secret key"
+   - Copy to `.env`
+
+2. **NewsAPI**: https://newsapi.org/register
+   - Free sign up
+   - Copy key to `.env`
+
+---
+
+## 🎤 **Use JARVIS**
+
+Say these commands:
+- "Hey Jarvis, what time is it?"
+- "Hey Jarvis, open Chrome"
+- "Hey Jarvis, what's the news?"
+- "Hey Jarvis, increase volume"
+- "Hey Jarvis, search for Python tutorials"
+
+---
+
 ## 📋 Requirements
 
 - **Python**: 3.9+
 - **OS**: Windows 10/11 or Ubuntu 22+
-- **Hardware**: 
-  - 4GB+ RAM
-  - Microphone + Speakers
-  - Internet connection
-
-**API Keys (Free tiers available):**
-- OpenAI: https://platform.openai.com/api-keys
-- NewsAPI: https://newsapi.org
-
----
-
-## 🚀 Quick Start
-
-### 1. Clone & Setup
-
-```bash
-git clone https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant.git
-cd jarvis-ai-assistant
-```
-
-### 2. Create Virtual Environment
-
-**Windows:**
-```powershell
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-**Linux/macOS:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Configure API Keys
-
-```bash
-cp .env.example .env
-# Edit .env with your API keys
-```
-
-### 5. Run JARVIS
-
-```bash
-python jarvis.py
-```
-
-When you see `Listening for 'Hey Jarvis'...`, say **"Hey Jarvis"** followed by your command.
-
----
-
-## 💬 Example Commands
-
-### Basic
-- "Hey Jarvis, what time is it?"
-- "Hey Jarvis, hello"
-- "Hey Jarvis, goodbye"
-
-### Applications
-- "Open Chrome"
-- "Launch VSCode"
-- "Start Spotify"
-
-### System Control
-- "Increase volume"
-- "Decrease brightness"
-- "Shut down"
-
-### Information
-- "What's the news?"
-- "Search for Python tutorials"
-- "Tell me about machine learning"
-
-### Learning
-- "When I say 'goodnight', turn off WiFi"
-- "Remember: when I say 'focus' close all browsers"
-
----
-
-## 📁 Project Structure
-
-```
-jarvis-ai-assistant/
-├── jarvis.py                 # Main entry point
-├── setup.py                  # Installation & configuration
-├── requirements.txt          # Python dependencies
-├── .env.example             # Configuration template
-├── README.md                # This file
-│
-├── modules/
-│   ├── core/
-│   │   ├── jarvis_core.py        # Main orchestrator
-│   │   ├── voice_engine.py       # STT/TTS/Wake word
-│   │   ├── memory_system.py      # SQLite database
-│   │   └── command_processor.py  # Command handling
-│   │
-│   └── features/
-│       ├── news_reader.py       # News API integration
-│       ├── browser_control.py   # Web automation
-│       └── system_control.py    # OS commands
-│
-├── data/
-│   ├── jarvis_memory.db      # Conversation database
-│   └── custom_commands.json  # User-defined commands
-│
-├── logs/
-│   └── jarvis.log           # Application log
-│
-└── backups/
-    └── jarvis_memory_*.db   # Database backups
-```
-
----
-
-## ⚙️ Configuration
-
-### .env File Options
-
-```env
-# API Keys
-OPENAI_API_KEY=your_key
-NEWS_API_KEY=your_key
-ELEVENLABS_API_KEY=your_key
-
-# System
-USER_NAME=Sir
-USER_LANGUAGE=en
-AUTO_START_ON_BOOT=true
-
-# Voice
-WHISPER_MODEL=base
-TTS_ENGINE=pyttsx3
-TTS_VOICE=default
-
-# News
-NEWS_UPDATE_INTERVAL=1800
-NEWS_COUNTRY=us
-
-# Debug
-DEBUG=false
-LOG_LEVEL=INFO
-```
-
----
-
-## 🐧 Linux Installation
-
-### Ubuntu/Debian
-
-```bash
-# Install system dependencies
-sudo apt-get update
-sudo apt-get install python3.9 python3.9-venv python3.9-dev
-sudo apt-get install portaudio19-dev
-sudo apt-get install espeak
-
-# Clone and setup
-git clone https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant.git
-cd jarvis-ai-assistant
-python3.9 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-python jarvis.py
-```
-
-### Auto-start as Service
-
-```bash
-systemctl --user enable jarvis
-systemctl --user start jarvis
-systemctl --user status jarvis
-```
-
----
-
-## 🪟 Windows Installation
-
-### PowerShell
-
-```powershell
-# Clone
-git clone https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant.git
-cd jarvis-ai-assistant
-
-# Setup
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
-
-# Run
-python jarvis.py
-```
-
-### Auto-start via Task Scheduler
-
-1. Open Task Scheduler
-2. Create Basic Task → "JARVIS"
-3. Trigger: "At log on"
-4. Action: `python C:\path\to\jarvis.py`
-
----
-
-## 🔐 Security
-
-- **Local Processing**: Conversations stored locally, not sent to cloud
-- **API Keys**: Keep `.env` file secure, never commit to Git
-- **Microphone**: Only active during listening
-- **Data**: Regular backups in `backups/` directory
-
-Add to `.gitignore`:
-```
-.env
-*.db
-logs/
-data/
-backups/
-```
-
----
-
-## 📊 Performance
-
-**Typical Resource Usage:**
-- CPU: 5-15% (idle)
-- RAM: 150-300 MB
-- Disk: 2-5 GB
+- **Hardware**: Microphone + Speakers + 4GB RAM
 
 ---
 
 ## 🐛 Troubleshooting
 
-### No Audio Input
-```bash
-python -c "import sounddevice as sd; print(sd.query_devices())"
+### "Python not found"
+- Download: https://www.python.org/
+- Check "Add Python to PATH"
+
+### "No audio input"
+- Check microphone is connected and enabled
+- Run: `python -c "import sounddevice as sd; print(sd.query_devices())"`
+
+### "API key errors"
+- Edit `.env` file
+- Paste correct keys from websites above
+
+---
+
+## 📂 Files Explained
+
+| File | Purpose |
+|------|----------|
+| `start_jarvis.bat` | Windows: Click to run JARVIS |
+| `start_jarvis.sh` | Linux/macOS: Run JARVIS |
+| `setup_windows.bat` | Windows: Configure settings |
+| `setup_linux.sh` | Linux/macOS: Configure settings |
+| `.env` | Your API keys (created automatically) |
+| `jarvis.py` | Main application |
+
+---
+
+## 💻 Full Manual Setup (If you prefer)
+
+### Windows:
+```powershell
+git clone https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant.git
+cd jarvis-ai-assistant
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
+copy .env.example .env
+REM Edit .env with your API keys
+python jarvis.py
 ```
 
-### API Errors
-- Check `.env` file has correct keys
-- Verify API quotas and billing
-
-### Memory Database Locked
+### Linux:
 ```bash
-rm data/jarvis_memory.db
+git clone https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant.git
+cd jarvis-ai-assistant
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+# Edit .env with your API keys
+python jarvis.py
 ```
 
 ---
 
-## 📝 Logs
+## 📊 Project Structure
 
-View logs:
-```bash
-tail -f logs/jarvis.log
+```
+jarvis-ai-assistant/
+├── start_jarvis.bat          ⭐ Windows: One-click launcher
+├── start_jarvis.sh           ⭐ Linux/macOS: One-click launcher
+├── setup_windows.bat         Setup for Windows
+├── setup_linux.sh            Setup for Linux
+├── jarvis.py                 Main application
+├── requirements.txt          Dependencies
+├── .env.example              Configuration template
+├── README.md                 This file
+└── modules/                  Application code
 ```
 
 ---
 
-## 🤝 Contributing
+## ⌨️ Voice Commands Examples
 
-Contributions welcome!
+**Time & Date:**
+- "What time is it?"
+- "What's today's date?"
+
+**System Control:**
+- "Open Chrome"
+- "Close Spotify"
+- "Increase volume"
+- "Decrease brightness"
+- "Sleep mode"
+
+**Information:**
+- "What's the news?"
+- "Search for Python tutorials"
+- "Find information about AI"
+
+**Learning:**
+- "When I say goodnight, turn off WiFi"
+- "Remember: when I say focus, close all browsers"
 
 ---
 
-## 📄 License
+## 🔐 Security
 
-MIT License
+- API keys stored locally in `.env` (never shared)
+- Database stored locally (not cloud)
+- Add `.env` to `.gitignore` (already done)
 
 ---
 
-**Made with ❤️ by Shamil Asadullayev**
+## 📞 Support
 
-Star ⭐ if you find this project useful!
+If something doesn't work:
+1. Check that Python 3.9+ is installed
+2. Make sure API keys are in `.env`
+3. Check microphone is connected
+4. Look at `logs/jarvis.log` for errors
+
+---
+
+## ✨ Made with ❤️
+
+By: Shamil Asadullayev  
+Repo: https://github.com/shamilasadullayev87-oss/jarvis-ai-assistant
+
+⭐ **Star this repo if you like it!**
